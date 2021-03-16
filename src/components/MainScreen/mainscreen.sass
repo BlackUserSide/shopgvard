@@ -1,0 +1,106 @@
+.main-wrapper
+    background-color: #fff
+    .first-wrapper
+        background: url('../../img/bg1.jpg');
+        background-size: cover
+        background-position: center
+        min-height: 700px
+        height: 100%
+    .catalog-wrapper
+        padding: 35px 70px
+        h1
+            font-size: 48px
+            font-weight: 200
+        .catalog-wrapper-flex
+            position: relative
+            display: flex
+            flex-direction: row
+            justify-content: space-evenly
+            align-items: center
+            .product-wrapaper
+                width: 350px
+                position: relative
+                padding: 15px 25px
+                border: 2px solid rgba(#FFCC33, .234)
+                border-radius: 10px
+                -webkit-box-shadow: 12px 15px 8px 0px rgba(204, 204, 204, 0.2);
+                -moz-box-shadow: 12px 15px 8px 0px rgba(204, 204, 204, 0.2);
+                box-shadow: 12px 15px 8px 0px rgba(204, 204, 204, 0.2);
+                position: relative
+                overflow: hidden
+                &:hover
+                    .button-wrapper
+                        animation: fadeIn .3s ease-in-out forwards
+                .image-wrapper
+                    img
+                        width: 100%
+                        max-height: 400px
+                        height: 100%
+                        border-radius: 10px
+                .name-wrapper   
+                    width: 100%
+                    text-align: center
+                    p
+                        font-size: 22px
+                        font-weight: 600
+                        line-height: 15px
+                .price-wrapper
+                    margin-bottom: 25px
+                    
+                    .discount-wrapper
+                        display: flex
+                        justify-content: space-around
+                        .defult-price
+                            font-size: 28px
+                            color: #ccc
+                            text-decoration: line-through
+                            margin: 0
+                        .discount-wrapper
+                            font-size: 32px
+                            color: #FF0033
+                            margin: 0
+                .button-wrapper
+                    background-color: #FFCC33
+                    position: absolute
+                    width: 100%
+                    left: 0
+                    bottom: -80px
+                    opacity: 0
+                    display: flex
+                    flex-direction: row
+                    justify-content: center
+                    padding-top: 10px
+                    cursor: pointer
+                    animation: fadeOut .3s ease-in-out  forwards
+                    .btn-cart
+                        background: transparent
+                        border: none
+                        cursor: pointer
+                        img
+                            width: 50px
+                            height: 50px
+                    
+
+@keyframes fadeIn
+    0%
+        opacity: 0
+        bottom: -80px
+    50%
+        opacity: 1
+        bottom: -30px
+    100%
+        opacity: 1
+        bottom: 0px
+@keyframes fadeOut
+    0%
+        opacity: 1
+        bottom: 0px
+        
+    50%
+        opacity: 1
+        bottom: -30px
+    100%
+        opacity: 0
+        bottom: -80px
+        
+                        
