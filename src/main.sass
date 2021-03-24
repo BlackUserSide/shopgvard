@@ -3,4 +3,112 @@ body
     max-width: 100%
     width: 100%
     font-family: 'Russo One'
+
+.bg-lock
+    background-color: rgba(#000, .5);
+    position: fixed
+    width: 100%
+    height: 100%
+    top: 0
+    left: 0
+    z-index: 1
+    animation: fadeBgLock .3s ease-in-out forwards
     
+.pop-cart-wrapper
+    z-index: 2
+    position: absolute
+    top: 0
+    left: 0
+    background: #fff
+    width: 60%
+    height: auto
+    top: 50%
+    left: 50%
+    margin-right: -50%
+    transform: translate(-50%, -50%)
+    padding: 15px 35px
+    border-radius: 5px
+    opacity: 0
+    animation: fadeBgLock .3s ease-in-out forwards
+    animation-delay: .2s
+    -webkit-box-shadow: 7px 7px 8px 0px rgba(204, 204, 204, 0.2);
+    -moz-box-shadow: 7px 7px 8px 0px rgba(204, 204, 204, 0.2);
+    box-shadow: 7px 7px 8px 0px rgba(204, 204, 204, 0.2);
+    .top-line-cart
+        display: flex
+        font-display: row
+        justify-content: space-between
+        max-width: 100%
+        align-items: center
+        img
+            width: 20px
+            height: 20px
+            cursor: pointer
+            transition: all .3s ease
+            &:hover
+                transform: scale(1.2)
+        .h3
+            font-weight: 400
+            font-size: 22px
+    .cart-item-wrapper
+        border-bottom: 1px solid #ccc
+        padding: 15px 0
+        .item-cart-wrapper
+            display: flex
+            align-items: center
+            justify-content: space-evenly
+            .close-icon
+                img
+                    width: 20px
+                    height: 20px
+                    transition: all .3s ease
+                    cursor: pointer
+                    &:hover
+                        transform: scale(1.1)
+            .name-wrapper
+                font-size: 18px
+                font-weight: 500
+            .amount-wrapper
+                display: flex
+                flex-direction: row
+                align-items: center
+                max-width: 150px
+                span
+                    font-size: 22px
+                    font-weight: 500
+                    color: #6600FF
+                    margin: 0 20px
+                    cursor: pointer
+                    user-select: none
+                    transition: .3s ease
+                    &:hover
+                        transform: scale(1.1)
+                input
+                    width: 20%
+                    text-align: center
+                    font-size: 18px
+            .price-wrapper
+                .price-discount
+                    width: 150px
+                    justify-content: space-between
+                    display: flex
+                    align-items: center
+                    .discount-wrapper
+                        font-size: 18px
+                        color: #FF0033
+                        font-weight: 450
+                        span
+                            font-weight: 700
+                    .price-wrapper
+                        font-size: 25px
+                        font-weight: 300
+                        span
+                            font-weight: 500
+                            padding-left: 5px
+
+@keyframes fadeBgLock
+    0%
+        opacity: 0
+    100%
+        opacity: 1
+        

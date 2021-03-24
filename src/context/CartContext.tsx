@@ -1,26 +1,55 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { PopUpCart } from "../uiComponents/PopUpCart";
 
-interface ICart {
-  addToCart: (id: number) => void;
-  // removeInCart: (id: number) => void;
-  // changeAmount: (id: number, val: number) => void;
+export interface ICart {
+  addToCart: (id: number, size: string) => void;
+  removeInCart: (id: number) => void;
+  changeAmount: (id: number, val: number) => void;
   cartLengh: number;
+  changePopStatus: () => void;
 }
-type ICartIn = {
+export type ICartIn = {
   id: number;
   amount: number;
 };
 export const CartContext = React.createContext<Partial<ICart>>({});
 export const CartCreateContext: React.FC = ({ children }) => {
   const [length, setLength] = useState<number>(0);
+  const [popUpCart, setPopUpCart] = useState<boolean>(false);
+  useEffect(() => {
+    let dataCart: any = localStorage.getItem("cart");
+    if (dataCart) {
+      dataCart = JSON.parse(dataCart);
+      setLength(dataCart.length);
+    }
+  }, []);
   const cartContext: ICart = {
-    addToCart: (id) => {
+    removeInCart: (id) => {
+      let dataCart: any = localStorage.getItem("cart");
+      dataCart = JSON.parse(dataCart);
+      let newCart = dataCart.filter((e: any) => e.id !== id);
+      localStorage.setItem("cart", JSON.stringify(newCart));
+    },
+    changeAmount: (id, val) => {
+      let dataCart: any = localStorage.getItem("cart");
+      dataCart = JSON.parse(dataCart);
+      let newCart: any = dataCart.map((e: any) => {
+        if (e.id === id) {
+          e.amount = val;
+          return e;
+        }
+        return e;
+      });
+      localStorage.setItem("cart", JSON.stringify(newCart));
+    },
+    addToCart: (id, size) => {
       let dataCart: any = localStorage.getItem("cart");
       if (dataCart === null) {
         const cart: any = [
           {
             id: id,
             amount: 1,
+            size: size,
           },
         ];
         setLength(1);
@@ -54,8 +83,18 @@ export const CartCreateContext: React.FC = ({ children }) => {
       }
     },
     cartLengh: length,
+    changePopStatus: () => {
+      if (popUpCart) {
+        setPopUpCart(false);
+        return;
+      }
+      setPopUpCart(true);
+    },
   };
   return (
-    <CartContext.Provider value={cartContext}>{children}</CartContext.Provider>
+    <CartContext.Provider value={cartContext}>
+      {children}
+      {popUpCart ? <PopUpCart /> : ""}
+    </CartContext.Provider>
   );
 };

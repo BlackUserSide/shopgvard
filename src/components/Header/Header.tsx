@@ -1,11 +1,23 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { CartContext } from "../../context/CartContext";
 import cartIcon from "../../img/shopping-cart.svg";
 import "./header.sass";
 
 export const Hedaer: React.FC = () => {
-  const { cartLengh } = useContext(CartContext);
+  const [cart, setCart] = useState<number>(0);
+  const { cartLengh, changePopStatus } = useContext(CartContext);
+  const changePopCartHandler = () => {
+    if (changePopStatus) {
+      changePopStatus();
+    }
+  };
+  useEffect(() => {
+    if (cartLengh) {
+      setCart(cartLengh);
+    }
+    return;
+  }, [cartLengh]);
   return (
     <header className="site-header">
       <div className="logo-wrapper">
@@ -35,9 +47,9 @@ export const Hedaer: React.FC = () => {
       <div className="cart-wrapper">
         <div className="span-cart">
           <div className="cart-count">
-            <span>{cartLengh ? cartLengh : 0}</span>
+            <span>{cart}</span>
           </div>
-          <img src={cartIcon} alt="" />
+          <img src={cartIcon} alt="" onClick={changePopCartHandler} />
         </div>
       </div>
     </header>

@@ -7,7 +7,9 @@ export const CatalogWrapper: React.FC = () => {
   const [dataProduct, setDataProduct] = useState<Array<IDataProduct>>([]);
   useEffect(() => {
     getProducts().then((res) => {
-      setDataProduct(res.data.data.slice(0, 3));
+      if (res.data.data) {
+        setDataProduct(res.data.data.slice(0, 3));
+      }
     });
   }, []);
   console.log(dataProduct);
